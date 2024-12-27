@@ -22,70 +22,59 @@ const fields = [
   {
     name: "firstname",
     label: "Prénom",
-    placeholder: "Alexandre",
     required: true,
   },
-  { name: "lastname", label: "Nom", placeholder: "Artisien", required: true },
+  { name: "lastname", label: "Nom", required: true },
   {
     name: "phone",
     label: "Téléphone",
-    placeholder: "0667274669",
     required: true,
   },
   {
     name: "fixphone",
     label: "Téléphone fixe",
-    placeholder: "0254789654",
     required: false,
   },
-  { name: "fax", label: "Fax", placeholder: "0254789655", required: false },
+  { name: "fax", label: "Fax", required: false },
   {
     name: "email",
     label: "Email",
-    placeholder: "example@gmail.com",
     required: true,
   },
   {
     name: "company",
     label: "Entreprise",
-    placeholder: "RouleMarcel",
     required: true,
   },
   {
     name: "jobtitle",
     label: "Fonction",
-    placeholder: "Développeur web",
     required: true,
   },
   {
     name: "street",
     label: "Rue",
-    placeholder: "30 avenue de l'Europe",
     required: true,
   },
   {
     name: "city",
     label: "Ville",
-    placeholder: "Les Ponts-de-Cé",
     required: true,
   },
   {
     name: "state",
     label: "État",
-    placeholder: "Maine et Loire",
     required: true,
   },
-  { name: "country", label: "Pays", placeholder: "France", required: true },
+  { name: "country", label: "Pays", required: true },
   {
     name: "website",
     label: "Site web",
-    placeholder: "https://www.alexandre-artisien.fr",
     required: true,
   },
   {
     name: "note",
     label: "Note",
-    placeholder: "Ce contact est privé",
     required: false,
   },
 ];
@@ -179,7 +168,7 @@ END:VCARD`;
                         </span>
                       </FormLabel>
                       <FormControl>
-                        <Input placeholder={field.placeholder} {...formField} />
+                        <Input {...formField} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
