@@ -14,9 +14,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { useState } from "react";
-import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { useState } from "react";
 
 // Champs spécifiques pour les QR Codes Wi-Fi
 const wifiFields = [
@@ -87,34 +87,65 @@ export function WifiQrCodeForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)}>
             <div className="grid grid-cols-2 gap-3">
-              {wifiFields.map((field) => (
-                <FormField
-                  key={field.name}
-                  control={form.control}
-                  name={field.name as keyof z.infer<typeof wifiSchema>}
-                  render={({ field: formField }) => (
-                    <FormItem>
-                      <FormLabel>
-                        {field.label}
-                        <span className="font-bold text-secondary">
-                          {field.required ? " *" : ""}
-                        </span>
-                      </FormLabel>
-                      <FormControl>
-                        {field.name === "hidden" ? (
-                          <Switch {...formField} />
-                        ) : (
-                          <Input
-                            placeholder={field.placeholder}
-                            {...formField}
-                          />
-                        )}
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              ))}
+              <FormField
+                control={form.control}
+                name="ssid"
+                render={({ field: formField }) => (
+                  <FormItem>
+                    <FormLabel>SSID</FormLabel>
+                    <FormControl>
+                      <Input placeholder="MonWiFi" {...formField} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field: formField }) => (
+                  <FormItem>
+                    <FormLabel>Mot de passe</FormLabel>
+                    <FormControl>
+                      <Input placeholder="motdepasse123" {...formField} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="encryption"
+                render={({ field: formField }) => (
+                  <FormItem>
+                    <FormLabel>Type de cryptage</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="WPA, WPA2, WEP, ou vide"
+                        {...formField}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="hidden"
+                render={({ field: formField }) => (
+                  <FormItem>
+                    <FormLabel>Réseau masqué</FormLabel>
+                    <FormControl>
+                      <Switch
+                        checked={formField.value}
+                        onCheckedChange={formField.onChange}
+                        // {...formField}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <div className="col-span-2 text-center">
                 <Button type="submit">Générer le QR code</Button>
               </div>
