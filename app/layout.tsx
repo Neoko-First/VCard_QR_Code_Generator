@@ -11,6 +11,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Input } from "@/components/ui/input";
+import { Analytics } from "@vercel/analytics/react";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -99,6 +100,7 @@ export default function RootLayout({
             </SidebarInset>
           </SidebarProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
