@@ -32,9 +32,9 @@ export function WifiQrCodeForm() {
   const form = useForm<z.infer<typeof wifiSchema>>({
     resolver: zodResolver(wifiSchema),
     defaultValues: {
-      ssid: "Livebox-49F0",
-      password: "KYL7 Ptrs crwh t2hR 5C",
-      encryption: "WPA",
+      ssid: "",
+      password: "",
+      encryption: "",
       hidden: true,
     },
   });
