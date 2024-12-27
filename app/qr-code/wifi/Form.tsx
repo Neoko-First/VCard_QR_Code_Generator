@@ -18,33 +18,6 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { useState } from "react";
 
-// Champs spécifiques pour les QR Codes Wi-Fi
-const wifiFields = [
-  {
-    name: "ssid",
-    label: "Nom du réseau (SSID)",
-    placeholder: "MonWiFi",
-    required: true,
-  },
-  {
-    name: "password",
-    label: "Mot de passe",
-    placeholder: "motdepasse123",
-    required: true,
-  },
-  {
-    name: "encryption",
-    label: "Type de cryptage",
-    placeholder: "WPA, WPA2, WEP, ou vide",
-    required: true,
-  },
-  {
-    name: "hidden",
-    label: "Réseau masqué",
-    required: false,
-  },
-];
-
 // Définition du schéma Zod
 const wifiSchema = z.object({
   ssid: z.string().min(1, "Le SSID est requis"),
