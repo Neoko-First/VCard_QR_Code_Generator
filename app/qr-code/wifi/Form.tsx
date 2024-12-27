@@ -139,7 +139,6 @@ export function WifiQrCodeForm() {
                       <Switch
                         checked={formField.value}
                         onCheckedChange={formField.onChange}
-                        // {...formField}
                       />
                     </FormControl>
                     <FormMessage />
