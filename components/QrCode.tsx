@@ -15,7 +15,7 @@ interface QrCodeProps {
 export default function QrCode({
   value,
   title = "QR Code",
-  size = 200,
+  size = 400,
   bgColor = "#ffffff",
   fgColor = "#000000",
   level = "L",

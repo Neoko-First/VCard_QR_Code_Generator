@@ -77,6 +77,12 @@ const fields = [
     label: "Note",
     required: false,
   },
+  {
+    name: "birthdate",
+    label: "Date de naissance",
+    required: true,
+    type: "date",
+  },
 ];
 
 // Définition du schéma Zod
@@ -98,6 +104,9 @@ const formSchema = z.object({
   country: z.string(),
   website: z.string().url("URL invalide"),
   note: z.string(),
+  birthdate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Date de naissance invalide"),
 });
 
 export function VCardForm() {
@@ -120,6 +129,7 @@ export function VCardForm() {
       country: "",
       website: "",
       note: "",
+      birthdate: "",
     },
   });
 
@@ -132,6 +142,7 @@ TEL;TYPE=CELL:${values.phone}
 ${values.fixphone ? `TEL;TYPE=WORK:${values.fixphone}` : ""}
 ${values.fax ? `TEL;TYPE=FAX:${values.fax}` : ""}
 EMAIL;TYPE=INTERNET:${values.email}
+BDAY:${values.birthdate}
 ORG:${values.company}
 TITLE:${values.jobtitle}
 ADR;TYPE=WORK:;;${values.street};${values.city};${values.state};;${
@@ -140,8 +151,6 @@ ADR;TYPE=WORK:;;${values.street};${values.city};${values.state};;${
 URL:${values.website}
 NOTE:${values.note}
 END:VCARD`;
-
-    console.log("vCard Data:", vcard);
 
     setQrData(vcard);
   }
@@ -163,12 +172,12 @@ END:VCARD`;
                     <FormItem>
                       <FormLabel>
                         {field.label}
-                        <span className="font-bold text-secondary">
+                        <span className="font-bold text-primary">
                           {field.required ? " *" : ""}
                         </span>
                       </FormLabel>
                       <FormControl>
-                        <Input {...formField} />
+                        <Input {...formField} type={field.type} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -183,7 +192,7 @@ END:VCARD`;
         </Form>
       </div>
       {qrData && (
-        <div className="sticky top-2 w-[200px] h-[200px]">
+        <div className="sticky top-2 w-[400px] h-[400px]">
           <QrCode value={qrData} />
         </div>
       )}
